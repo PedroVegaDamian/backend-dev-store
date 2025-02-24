@@ -21,8 +21,7 @@
   },
   "engineStrict": true,
   "engines": {
-    "node": "22.14.0",
-    "pnpm": "10.4.0"
+    "node": ">=20"
   },
   "dependencies": {
     "@nestjs/common": "11.0.1",
