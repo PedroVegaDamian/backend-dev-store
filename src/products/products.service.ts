@@ -4,6 +4,7 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { Product } from './entities/product.entity';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Injectable()
 export class ProductService {
@@ -16,8 +17,9 @@ export class ProductService {
     return await newProduct.save();
   }
 
-  async findAll() {
-    return await this.productModel.find({});
+  async findAll(paginationDto: PaginationDto) {
+    const { limit = 10, offset = 0 } = paginationDto;
+    return await this.productModel.find().limit(limit).skip(offset);
   }
 
   async findOne(id: string) {
